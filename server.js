@@ -16,6 +16,9 @@ app.use("/auth", require('./routes/jwtAuth'));
 // Dashboard
 app.use('/dashboard', require('./routes/dashboard'))
 
+// Entries
+app.use('/entries', require('./routes/entries'))
+
 // app.get("/api/v1/posts", (req, res) => {
 
 // })

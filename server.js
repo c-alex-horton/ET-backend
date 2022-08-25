@@ -1,9 +1,11 @@
 require("dotenv").config();
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const app = express();
 const cors = require("cors");
 
 // MIDDLEWARE
+app.use(cookieParser());
 
 app.use(express.json()) //req.body
 app.use(cors())

@@ -45,6 +45,7 @@ router.post("/register", validinfo, async (req, res) => {
 
 router.post("/login", validinfo, async (req, res) => {
     try {
+        console.log("Client Test", req.body)
 
         //1. destructure
         const { email, password } = req.body;

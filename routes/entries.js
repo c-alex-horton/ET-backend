@@ -17,8 +17,9 @@ router.post('/', authorization, async (req, res) => {
 
 router.get('/', authorization, async (req, res) => {
     try {
+        console.log('User: ', req.user)
         const entries = await pool.query('SELECT * FROM article WHERE user_id = $1', [req.user])
-        res.json(entries)
+        res.json({ entries: entries.rows })
     } catch (err) {
         console.log(err.message);
         res.status(500).json('Server Error');

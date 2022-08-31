@@ -67,7 +67,13 @@ router.post("/login", validinfo, async (req, res) => {
         //4. give them jwt token
         const token = jwtGenerator(user.rows[0].user_id);
 
-        res.json({ token })
+        return res
+            .cookie("access_token", token, {
+                httpOnly: true,
+                secure: false,
+            })
+            .status(200)
+            .json({ message: "Logged in successfully!", user: user.rows[0].user_name })
 
     } catch (err) {
         console.log(err.message);

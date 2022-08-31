@@ -5,10 +5,16 @@ const app = express();
 const cors = require("cors");
 
 // MIDDLEWARE
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+}
+
 app.use(cookieParser());
 
 app.use(express.json()) //req.body
-app.use(cors())
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
+
 
 // ROUTES
 

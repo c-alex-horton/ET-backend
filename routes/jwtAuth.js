@@ -45,7 +45,6 @@ router.post("/register", validinfo, async (req, res) => {
 
 router.post("/login", validinfo, async (req, res) => {
     try {
-        console.log("Client Test", req.body)
 
         //1. destructure
         const { email, password } = req.body;
@@ -67,13 +66,7 @@ router.post("/login", validinfo, async (req, res) => {
         //4. give them jwt token
         const token = jwtGenerator(user.rows[0].user_id);
 
-        return res
-            .cookie("access_token", token, {
-                httpOnly: true,
-                secure: false,
-            })
-            .status(200)
-            .json({ message: "Logged in successfully!", user: user.rows[0].user_name })
+        res.json({ token })
 
     } catch (err) {
         console.log(err.message);

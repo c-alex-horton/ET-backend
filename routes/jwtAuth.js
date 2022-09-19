@@ -32,7 +32,9 @@ router.post("/register", validinfo, async (req, res) => {
         //5. gen our jwt token
         const token = jwtGenerator(newUser.rows[0].user_id);
 
-        res.json({ token })
+
+
+        res.json({ token, name })
 
 
     } catch (err) {
@@ -66,7 +68,10 @@ router.post("/login", validinfo, async (req, res) => {
         //4. give them jwt token
         const token = jwtGenerator(user.rows[0].user_id);
 
-        res.json({ token })
+        // get username
+        const name = user.rows[0].user_name;
+
+        res.json({ token, name })
 
     } catch (err) {
         console.log(err.message);

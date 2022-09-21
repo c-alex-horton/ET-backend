@@ -4,7 +4,6 @@ const authorization = require('../middleware/authorization')
 
 router.post('/', authorization, async (req, res) => {
     try {
-        console.log("Submition", req);
         const { content, emotion, flagged, notes } = req.body;
         const entry = await pool.query(
             "INSERT INTO article (content, emotion, flagged, notes, user_id) VALUES ($1, $2, $3, $4, $5)", [content, emotion, flagged, notes, req.user])
